@@ -1,0 +1,73 @@
+/*
+ * Tokens de diseño de ReaperSys — "Corporate Light": fondos claros, azul institucional
+ * y un navy formal para bloques de contraste (CTA, ventana de código, pie).
+ * Única fuente de los códigos hexadecimales de la marca: los componentes
+ * deben usar las utilidades de Tailwind derivadas (bg-mist, text-royal, ...)
+ * o las variables semánticas (--rs-surface, --rs-text, ...), nunca hex sueltos.
+ */
+
+:root {
+  /* Fondos: gris azulado claro de base, tarjetas blancas encima (nunca todo blanco) */
+  --rs-canvas: #ffffff;
+  --rs-mist: #eef2f7;
+  --rs-cloud: #e2e8f1;
+
+  /* Contraste formal: bandas navy para hero, procesos, CTA y pie */
+  --rs-navy: #0b1f44;
+  --rs-navy-soft: #16305e;
+  --rs-ink: #0f172a;
+  /* Sombra neutra casi negra para velar fotografías sin teñirlas de azul (hero) */
+  --rs-shade: #060a14;
+
+  /* Acento institucional (detalles finos: filetes, eyebrows sobre navy, estrellas) */
+  --rs-gold: #b8893b;
+  --rs-gold-soft: #e9d5a8;
+
+  /* Primarios (AA sobre blanco) */
+  --rs-royal: #1d4ed8;
+  --rs-electric: #1e5bd8;
+  --rs-indigo: #4338ca;
+  --rs-sky: #dbeafe;
+
+  /* Neutrales */
+  --rs-white: #ffffff;
+  --rs-slate: #334155;
+  --rs-soft-gray: #cbd5e1;
+  --rs-muted-gray: #556274;
+
+  /* Error / acento limitado */
+  --rs-magenta: #be123c;
+
+  /* Estados (éxito / advertencia) */
+  --rs-success: #036c4e;
+  --rs-warning: #9a4a0b;
+
+  /* Resaltado de sintaxis de la ilustración de código del hero (sobre --rs-ink) */
+  --rs-code-plain: #e2e8f0;
+  --rs-code-keyword: #c4b5fd;
+  --rs-code-type: #7dd3fc;
+  --rs-code-fn: #93c5fd;
+  --rs-code-string: #86efac;
+  --rs-code-number: #fcd34d;
+  --rs-code-comment: #94a3b8;
+
+  /* Semánticos */
+  --rs-background: #f5f7fa;
+  --rs-surface: var(--rs-canvas);
+  --rs-surface-raised: var(--rs-cloud);
+  --rs-text: var(--rs-ink);
+  --rs-text-secondary: var(--rs-slate);
+  --rs-text-muted: var(--rs-muted-gray);
+  --rs-border: #e2e8f0;
+  --rs-focus-ring: var(--rs-electric);
+
+  --rs-gradient-primary: linear-gradient(135deg, var(--rs-royal) 0%, var(--rs-indigo) 100%);
+  --rs-shadow-card: 0 1px 2px rgb(15 23 42 / 0.04), 0 8px 24px -12px rgb(15 23 42 / 0.12);
+  --rs-shadow-elevated: 0 2px 4px rgb(15 23 42 / 0.04), 0 24px 48px -20px rgb(11 31 68 / 0.28);
+
+  --rs-radius-sm: 0.5rem;
+  --rs-radius-md: 0.875rem;
+  --rs-radius-lg: 1.25rem;
+
+  color-scheme: light;
+}

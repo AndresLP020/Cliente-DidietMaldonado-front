@@ -1,0 +1,329 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+@import "shadcn/tailwind.css";
+@import "../styles/tokens.css";
+
+/* El sitio es claro por diseño; `dark:` nunca aplica. */
+@custom-variant dark (&:where(.rs-never-dark, .rs-never-dark *));
+
+/*
+ * Variables semánticas de shadcn/ui mapeadas a los tokens de marca.
+ * Ningún color se define aquí: todos provienen de src/styles/tokens.css.
+ */
+:root {
+  --background: var(--rs-background);
+  --foreground: var(--rs-text);
+  --card: var(--rs-surface);
+  --card-foreground: var(--rs-text);
+  --popover: var(--rs-surface-raised);
+  --popover-foreground: var(--rs-text);
+  --primary: var(--rs-royal);
+  --primary-foreground: var(--rs-white);
+  --secondary: var(--rs-surface-raised);
+  --secondary-foreground: var(--rs-text);
+  --muted: var(--rs-surface-raised);
+  --muted-foreground: var(--rs-text-muted);
+  --accent: var(--rs-sky);
+  --accent-foreground: var(--rs-text);
+  --destructive: var(--rs-magenta);
+  --border: var(--rs-border);
+  --input: var(--rs-soft-gray);
+  --ring: var(--rs-focus-ring);
+  --radius: 0.75rem;
+
+  --sidebar: var(--rs-mist);
+  --sidebar-foreground: var(--rs-text);
+  --sidebar-primary: var(--rs-royal);
+  --sidebar-primary-foreground: var(--rs-white);
+  --sidebar-accent: var(--rs-surface-raised);
+  --sidebar-accent-foreground: var(--rs-text);
+  --sidebar-border: var(--rs-border);
+  --sidebar-ring: var(--rs-focus-ring);
+
+  --chart-1: var(--rs-royal);
+  --chart-2: var(--rs-electric);
+  --chart-3: var(--rs-indigo);
+  --chart-4: var(--rs-muted-gray);
+  --chart-5: var(--rs-magenta);
+}
+
+@theme inline {
+  /* Marca */
+  --color-canvas: var(--rs-canvas);
+  --color-mist: var(--rs-mist);
+  --color-cloud: var(--rs-cloud);
+  --color-navy: var(--rs-navy);
+  --color-navy-soft: var(--rs-navy-soft);
+  --color-ink: var(--rs-ink);
+  --color-shade: var(--rs-shade);
+  --color-sky: var(--rs-sky);
+  --color-gold: var(--rs-gold);
+  --color-gold-soft: var(--rs-gold-soft);
+  --color-royal: var(--rs-royal);
+  --color-electric: var(--rs-electric);
+  --color-indigo-accent: var(--rs-indigo);
+  --color-snow: var(--rs-white);
+  --color-soft-gray: var(--rs-soft-gray);
+  --color-muted-gray: var(--rs-muted-gray);
+  --color-magenta: var(--rs-magenta);
+  --color-success: var(--rs-success);
+  --color-warning: var(--rs-warning);
+
+  /* Superficies propias */
+  --color-surface: var(--rs-surface);
+  --color-surface-raised: var(--rs-surface-raised);
+  --color-foreground-secondary: var(--rs-text-secondary);
+
+  /* shadcn/ui */
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-ring: var(--sidebar-ring);
+
+  /* Tipografía */
+  --font-sans: var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif;
+  --font-heading: var(--font-space-grotesk), var(--font-geist-sans), ui-sans-serif, sans-serif;
+  --font-display: var(--font-heading);
+  --font-mono: var(--font-geist-mono), ui-monospace, monospace;
+
+  /* Radios */
+  --radius-sm: calc(var(--radius) * 0.6);
+  --radius-md: calc(var(--radius) * 0.8);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) * 1.4);
+  --radius-2xl: calc(var(--radius) * 1.8);
+  --radius-3xl: calc(var(--radius) * 2.2);
+  --radius-4xl: calc(var(--radius) * 2.6);
+
+  /* Animaciones decorativas */
+  --animate-gradient-pan: gradient-pan 14s ease-in-out infinite alternate;
+  --animate-float-slow: float-slow 9s ease-in-out infinite;
+  --animate-caret: caret 1.1s steps(1) infinite;
+  --animate-code-scan: code-scan 7s ease-in-out infinite;
+
+  @keyframes gradient-pan {
+    from { background-position: 0% 50%; }
+    to { background-position: 100% 50%; }
+  }
+
+  @keyframes caret {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0; }
+  }
+
+  /* Banda que recorre las líneas del editor (ilustración del hero). */
+  @keyframes code-scan {
+    0%, 8% { transform: translateY(0); opacity: 0; }
+    15% { opacity: 1; }
+    85% { opacity: 1; }
+    92%, 100% { transform: translateY(var(--scan-distance, 20rem)); opacity: 0; }
+  }
+
+  @keyframes float-slow {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+
+  html {
+    @apply bg-background font-sans text-foreground;
+    scroll-behavior: smooth;
+    scroll-padding-top: 5.5rem; /* compensa el header fijo al saltar a anclas */
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    text-rendering: optimizeLegibility;
+  }
+
+  h1, h2, h3, h4 {
+    font-family: var(--font-heading);
+    letter-spacing: -0.02em;
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--rs-focus-ring);
+    outline-offset: 3px;
+  }
+
+  ::selection {
+    background: color-mix(in oklab, var(--rs-royal) 22%, transparent);
+  }
+
+  button:not(:disabled),
+  [role="button"]:not(:disabled) {
+    cursor: pointer;
+  }
+}
+
+@layer utilities {
+  /* Texto con gradiente de marca (navy → azul → índigo). */
+  .text-gradient-brand {
+    background-image: linear-gradient(110deg, var(--rs-navy) 20%, var(--rs-royal) 60%, var(--rs-indigo) 100%);
+    background-clip: text;
+    color: transparent;
+  }
+
+  /* Superficie translúcida clara (botón secundario, barras fijas). */
+  .surface-glass {
+    background: color-mix(in oklab, var(--rs-white) 82%, transparent);
+    backdrop-filter: blur(14px) saturate(140%);
+    border: 1px solid var(--rs-border);
+  }
+
+  /* Rejilla técnica sutil para fondos de sección. */
+  .bg-grid {
+    background-image:
+      linear-gradient(to right, color-mix(in oklab, var(--rs-royal) 7%, transparent) 1px, transparent 1px),
+      linear-gradient(to bottom, color-mix(in oklab, var(--rs-royal) 7%, transparent) 1px, transparent 1px);
+    background-size: 56px 56px;
+    mask-image: radial-gradient(ellipse at center, black 30%, transparent 75%);
+  }
+
+  /* Rejilla en blanco para bandas navy. */
+  .bg-grid-light {
+    background-image:
+      linear-gradient(to right, rgb(255 255 255 / 0.05) 1px, transparent 1px),
+      linear-gradient(to bottom, rgb(255 255 255 / 0.05) 1px, transparent 1px);
+    background-size: 56px 56px;
+    mask-image: radial-gradient(ellipse at center, black 30%, transparent 75%);
+  }
+
+  /* Superficies claras teñidas (gris azulado), nunca blanco plano: alternan con las bandas oscuras. */
+  .bg-tint {
+    background:
+      radial-gradient(ellipse 70% 50% at 85% 0%, color-mix(in oklab, var(--rs-sky) 55%, transparent), transparent 70%),
+      linear-gradient(180deg, var(--rs-mist) 0%, var(--rs-cloud) 100%);
+  }
+
+  .bg-tint-alt {
+    background:
+      radial-gradient(ellipse 60% 50% at 10% 100%, color-mix(in oklab, var(--rs-gold-soft) 35%, transparent), transparent 70%),
+      linear-gradient(180deg, var(--rs-cloud) 0%, var(--rs-mist) 100%);
+  }
+
+  /* Banda oscura sin fotografía (pie, bloques secundarios): sombra neutra con un brillo cálido tenue. */
+  .bg-shade-band {
+    background:
+      radial-gradient(ellipse 60% 70% at 85% 10%, rgb(184 137 59 / 0.12), transparent 70%),
+      radial-gradient(ellipse 50% 60% at 10% 90%, rgb(29 78 216 / 0.14), transparent 70%),
+      var(--rs-shade);
+  }
+
+  /* Numerales decorativos con contorno dorado (proceso). */
+  .text-outline-gold {
+    color: transparent;
+    -webkit-text-stroke: 1.5px var(--rs-gold);
+    background-image: linear-gradient(180deg, rgb(233 213 168 / 0.25), transparent 70%);
+    background-clip: text;
+  }
+
+  /* Cortes diagonales entre secciones (clip-path) (la siguiente sección se superpone para no dejar huecos). */
+  .clip-slant {
+    clip-path: polygon(0 0, 100% 3.5rem, 100% 100%, 0 calc(100% - 3.5rem));
+  }
+
+  .clip-slant-reverse {
+    clip-path: polygon(0 3.5rem, 100% 0, 100% calc(100% - 3.5rem), 0 100%);
+  }
+
+  /* Tarjeta de vidrio oscuro para contenido sobre bandas oscuras. */
+  .glass-dark {
+    background: rgb(255 255 255 / 0.06);
+    border: 1px solid rgb(255 255 255 / 0.12);
+    backdrop-filter: blur(14px) saturate(130%);
+    box-shadow: 0 20px 40px -24px rgb(0 0 0 / 0.6);
+  }
+
+  /* Sombras de tarjeta (sustituyen al antiguo resplandor del tema oscuro). */
+  .shadow-card {
+    box-shadow: var(--rs-shadow-card);
+  }
+
+  .shadow-elevated {
+    box-shadow: var(--rs-shadow-elevated);
+  }
+}
+
+/*
+ * Barra de navegación: transparente con texto claro mientras está sobre una banda oscura de
+ * encabezado ([data-navy-hero]) y no se ha hecho scroll; en cualquier otro caso, vidrio oscuro
+ * con texto claro (coherente con las bandas). Solo CSS (:has), para que el primer render ya sea correcto.
+ */
+@layer components {
+  .site-header-bar {
+    --hdr-fg: var(--rs-white);
+    --hdr-muted: rgb(255 255 255 / 0.8);
+    --hdr-accent: var(--rs-gold-soft);
+    --logo-fg: var(--rs-white);
+    --logo-accent: var(--rs-sky);
+    --logo-hex: var(--rs-sky);
+    color: var(--hdr-fg);
+    background: color-mix(in oklab, var(--rs-shade) 88%, transparent);
+    border-color: rgb(255 255 255 / 0.08);
+    backdrop-filter: blur(20px) saturate(150%);
+  }
+
+  /* Contenedores oscuros (pie, bandas) con logotipo claro. */
+  .on-navy {
+    --logo-fg: var(--rs-white);
+    --logo-accent: var(--rs-sky);
+    --logo-hex: var(--rs-sky);
+  }
+
+  .site-header-bar[data-scrolled="true"] {
+    box-shadow: 0 10px 30px -16px rgb(0 0 0 / 0.6);
+  }
+
+  body:has([data-navy-hero]) .site-header-bar:not([data-scrolled="true"]) {
+    background: transparent;
+    border-color: transparent;
+    backdrop-filter: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
